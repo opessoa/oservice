@@ -5,8 +5,8 @@ using namespace api::utils::jwt;
 JWT JWT::generateToken(const std::map<std::string, ::jwt::traits::nlohmann_json::value_type>& claims, const bool& extension) {
     const auto time = std::chrono::system_clock::now();
 
-    // If remember is true, just add more 30 days, otherwise, just put valid only for 1 day.
-    const int64_t expiresAt = std::chrono::duration_cast<std::chrono::seconds>((time + std::chrono::hours{(extension ? 30 : 1) * 24}).time_since_epoch()).count();
+    // If remember is true, just add more 30 days, otherwise, just put valid only for 1 day. hours{(extension ? 30 : 1) * 24}
+    const int64_t expiresAt = std::chrono::duration_cast<std::chrono::seconds>((time + std::chrono::minutes{5}).time_since_epoch()).count();
 
     auto jwtToken = ::jwt::create()
         .set_type("JWT")
@@ -40,8 +40,10 @@ std::map<std::string, any> JWT::decodeToken(const std::string& encodedToken) {
             return attributes;
         }
 
-        throw;
-    } catch (const std::exception& e) {
+        std::cout << "verify error" << std::endl;
+        return {};
+    } catch (...) {
+        std::cout << "verify catch" << std::endl;
         return {};
     }
 }
@@ -55,9 +57,10 @@ bool JWT::verifyToken(const ::jwt::decoded_jwt<::jwt::traits::nlohmann_json>& jw
 
     // If some properties of token doesn't correspond same as like, issued, audience, etc..., catch will be called
     try {
+        std::cout << "verify" << std::endl;
         jwtVerifier.verify(jwt);
         return true;
-    } catch(const std::exception& e)  {
+    } catch(...)  {
         return false;
     }
 }

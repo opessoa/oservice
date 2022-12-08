@@ -1,14 +1,14 @@
 #pragma once
 
 #include <drogon/drogon.h>
-#include <src/utils/jwt/JWT.h>
+#include <src/utils/jwt/jwt.h>
 
 using namespace drogon;
 using namespace api::utils::jwt;
 namespace api::v1::filters {
-    class JwtFilter : public HttpFilter<JwtFilter> {
+    class jwtFilter : public HttpFilter<jwtFilter> {
     public:
-        JwtFilter() = default;
+        jwtFilter() = default;
 
         virtual void doFilter(const HttpRequestPtr &request, FilterCallback &&fcb, FilterChainCallback &&fccb) override;
     };

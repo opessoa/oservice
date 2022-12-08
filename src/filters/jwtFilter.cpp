@@ -1,8 +1,9 @@
-#include "JwtFilter.h"
+#include "jwtFilter.h"
 
 using namespace api::v1::filters;
+using namespace api::utils::jwt;
 
-void JwtFilter::doFilter(const HttpRequestPtr &request, FilterCallback &&fcb, FilterChainCallback &&fccb) {
+void jwtFilter::doFilter(const HttpRequestPtr &request, FilterCallback &&fcb, FilterChainCallback &&fccb) {
     // Skip the verification on method Options
     if (request->getMethod() == HttpMethod::Options) return fccb();
 

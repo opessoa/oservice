@@ -1,8 +1,7 @@
-#include "Auth.h"
-
+#include "auth.h"
 using namespace api::v1;
 
-void Auth::getToken(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback) {
+void auth::getToken(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback) {
     Json::Value responseJson = *request->getJsonObject();
     Json::Value resultJson;
 
@@ -13,10 +12,9 @@ void Auth::getToken(const HttpRequestPtr &request, std::function<void(const Http
 
         return callback(HttpResponse::newHttpJsonResponse(resultJson));
     }
-
-    JWT jwtGenerated = JWT::generateToken({
-        { "email", picojson::value(responseJson["email"].asString()) },
-    }, responseJson.isMember("remember") && responseJson["remember"].asBool());
+    auto jwtGenerated = JWT::generateToken();/*ex3,
+        responseJson.isMember("remember") && responseJson["remember"].asBool()
+    );*/
     std::int64_t jwtExpiration = jwtGenerated.getExpiration();
 
     resultJson["token"] = jwtGenerated.getToken();
@@ -27,7 +25,7 @@ void Auth::getToken(const HttpRequestPtr &request, std::function<void(const Http
     return callback(HttpResponse::newHttpJsonResponse(resultJson));
 }
 
-void Auth::verifyToken(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback) {
+void auth::verifyToken(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback) {
     Json::Value resultJson;
 
     resultJson["aud"] = request->getAttributes()->get<std::string>("jwt_aud");

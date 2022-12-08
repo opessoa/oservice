@@ -12,9 +12,9 @@ void auth::getToken(const HttpRequestPtr &request, std::function<void(const Http
 
         return callback(HttpResponse::newHttpJsonResponse(resultJson));
     }
-    auto jwtGenerated = JWT::generateToken();/*ex3,
+    auto jwtGenerated = JWT::generateToken({{"email",responseJson["email"].asString()}},
         responseJson.isMember("remember") && responseJson["remember"].asBool()
-    );*/
+    );
     Json::Value::Int64 jwtExpiration = jwtGenerated.getExpiration();
 
     resultJson["token"] = jwtGenerated.getToken();
@@ -28,7 +28,7 @@ void auth::getToken(const HttpRequestPtr &request, std::function<void(const Http
 void auth::verifyToken(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback) {
     Json::Value resultJson;
 
-   /* resultJson["aud"] = request->getAttributes()->get<std::string>("jwt_aud");
+    resultJson["aud"] = request->getAttributes()->get<std::string>("jwt_aud");
     resultJson["exp"] = request->getAttributes()->get<Json::Value::Int64>("jwt_exp");
     resultJson["iat"] = request->getAttributes()->get<Json::Value::Int64>("jwt_iat");
     resultJson["iss"] = request->getAttributes()->get<std::string>("jwt_iss");
@@ -36,6 +36,6 @@ void auth::verifyToken(const HttpRequestPtr &request, std::function<void(const H
     resultJson["email"] = request->getAttributes()->get<std::string>("jwt_email");
     resultJson["jwt_debugger"] = "https://jwt.io/#debugger-io?token=" + request->getHeader("Authorization").substr(7);
     resultJson["status"] = 1;
-*/
+
     return callback(HttpResponse::newHttpJsonResponse(resultJson));
 }

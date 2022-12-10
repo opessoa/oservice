@@ -15,5 +15,14 @@
             "issuer": "auth.domain.pt",
             "audience": "domain.pt"
         }
-    }
+    },
+    "db_clients":[
+        {
+            "name":"",
+            "rdbms": "sqlite3",
+            "is_fast": true,
+            "connection_number": 1,
+            "filename": "db.sqlite3"
+        }
+    ]
 }

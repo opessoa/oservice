@@ -8,7 +8,6 @@
 #include "UserControler.h"
 #include <string>
 
-using namespace api::v1;
 
 void UserControler::getOne(const HttpRequestPtr &req,
                            std::function<void(const HttpResponsePtr &)> &&callback,

@@ -2,8 +2,16 @@
 using namespace api::v1;
 
 void auth::getToken(const HttpRequestPtr &request, std::function<void(const HttpResponsePtr &)> &&callback) {
-    Json::Value responseJson = *request->getJsonObject();
+    
     Json::Value resultJson;
+    if(!request || !request->getJsonObject())
+    {
+        resultJson["error"] = "Invalid Json.";
+		resultJson["status"] = 0;
+
+        return callback(HttpResponse::newHttpJsonResponse(resultJson));   
+    }
+    Json::Value responseJson = *request->getJsonObject();
 
     // Verify if there's a missing values on body of request
     if (!responseJson.isMember("email") || !responseJson.isMember("password")) {

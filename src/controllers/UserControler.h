@@ -17,7 +17,7 @@ using namespace drogon_model::sqlite3;
  * @brief this class is created by the drogon_ctl command.
  * this class is a restful API controller for reading and writing the user table.
  */
-namespace api::v1 {
+
 class UserControler: public drogon::HttpController<UserControler>, public UserControlerBase
 {
   public:
@@ -45,4 +45,3 @@ class UserControler: public drogon::HttpController<UserControler>, public UserCo
              std::function<void(const HttpResponsePtr &)> &&callback);
 
 };
-}

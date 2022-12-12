@@ -20,7 +20,7 @@
         {
             "name":"",
             "rdbms": "sqlite3",
-            "is_fast": true,
+            "is_fast": false,
             "connection_number": 1,
             "filename": "db.sqlite3"
         }

@@ -94,7 +94,7 @@
             //name: Name of the client,'default' by default
             "name": "default",
             //is_fast: 
-            "is_fast": true
+            "is_fast": false
         },
         // directory: The directory where the controller source files are stored.
         "directory": "src/controllers",

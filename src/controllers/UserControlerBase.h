@@ -11,6 +11,7 @@
 #include <drogon/orm/RestfulController.h>
 
 #include "../models/User.h"
+
 using namespace drogon;
 using namespace drogon::orm;
 using namespace drogon_model::sqlite3;
@@ -42,11 +43,11 @@ class UserControlerBase : public RestfulController
 
     orm::DbClientPtr getDbClient() 
     {
-        return drogon::app().getFastDbClient(dbClientName_);
+        return drogon::app().getDbClient(dbClientName_);
     }
 
   protected:
     /// Ensure that subclasses inherited from this class are instantiated.
     UserControlerBase();
-    const std::string dbClientName_{"default"};
+    const std::string dbClientName_{""};
 };

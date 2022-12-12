@@ -22,11 +22,11 @@ class UserControler: public drogon::HttpController<UserControler>, public UserCo
 {
   public:
     METHOD_LIST_BEGIN
-    ADD_METHOD_TO(UserControler::getOne,"/user/{1}",Get,Options);
-    ADD_METHOD_TO(UserControler::updateOne,"/user/{1}",Put,Options);
-    ADD_METHOD_TO(UserControler::deleteOne,"/user/{1}",Delete,Options);
-    ADD_METHOD_TO(UserControler::get,"/user",Get,Options);
-    ADD_METHOD_TO(UserControler::create,"/user",Post,Options);
+    ADD_METHOD_TO(UserControler::getOne,"/user/{1}",Get,Options,"api::v1::filters::jwtFilter");
+    ADD_METHOD_TO(UserControler::updateOne,"/user/{1}",Put,Options,"api::v1::filters::jwtFilter");
+    ADD_METHOD_TO(UserControler::deleteOne,"/user/{1}",Delete,Options,"api::v1::filters::jwtFilter");
+    ADD_METHOD_TO(UserControler::get,"/user",Get,Options,"api::v1::filters::jwtFilter");
+    ADD_METHOD_TO(UserControler::create,"/user",Post,Options,"api::v1::filters::jwtFilter");
     //ADD_METHOD_TO(UserControler::update,"/user",Put,Options);
     METHOD_LIST_END
      

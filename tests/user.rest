@@ -1,0 +1,49 @@
+@baseUrl = http://localhost
+
+### Create Token
+# @name auth
+POST {{baseUrl}}/api/v1/auth/login
+Content-Type: application/json
+Accept: application/json
+
+{ "email": "0rangeFox@domain.pt", "password": "0rangeFoxIsCool", "remember": true }
+#### Variable Response
+@accessToken = {{auth.response.body.$.token}}
+
+### Verify Token
+GET {{baseUrl}}/api/v1/auth/verify
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Get Users
+GET {{baseUrl}}/user
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Get User
+GET {{baseUrl}}/user/4
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Create User
+POST {{baseUrl}}/user
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "name":"osmar","password":"ola"
+}
+
+### Update User
+PUT {{baseUrl}}/user/4
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "id":4,"name":"osmar","password":"ola"
+}
+
+### Delete User
+DELETE {{baseUrl}}/user/2
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}

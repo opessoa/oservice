@@ -35,12 +35,12 @@ Authorization: Bearer {{accessToken}}
 }
 
 ### Update User
-PUT {{baseUrl}}/user/4
+PUT {{baseUrl}}/user/2
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 {
-    "id":4,"name":"osmar","password":"ola"
+    "id":2,"name":"oscar","password":"ola"
 }
 
 ### Delete User

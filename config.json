@@ -18,7 +18,7 @@
     },
     "db_clients":[
         {
-            "name":"",
+            "name":"default",
             "rdbms": "sqlite3",
             "is_fast": false,
             "connection_number": 1,

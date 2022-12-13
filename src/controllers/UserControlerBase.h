@@ -49,5 +49,5 @@ class UserControlerBase : public RestfulController
   protected:
     /// Ensure that subclasses inherited from this class are instantiated.
     UserControlerBase();
-    const std::string dbClientName_{""};
+    const std::string dbClientName_{"default"};
 };

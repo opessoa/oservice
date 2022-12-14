@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+<%inc#include "../models/User.h" %>
 <%c++
+    auto users=@@.get<std::vector<drogon_model::sqlite3::User>>("users");
     auto para=@@.get<std::unordered_map<std::string,std::string>>("parameters");
 %>
 <head>
@@ -8,22 +10,22 @@
     <title>[[ title ]]</title>
 </head>
 <body>
-    <%c++ if(para.size()>0){%>
+    <%c++ if(users.size()>0){%>
     <H1>Parameters</H1>
     <table border="1">
       <tr>
         <th>name</th>
         <th>value</th>
       </tr>
-      <%c++ for(auto iter:para){%>
+      <%c++ for(auto user:users){%>
       <tr>
-        <td>{%iter.first%}</td>
-        <td><%c++ $$<<iter.second;%></td>
+        <td>{%*user.getName().get()%}</td>
+        <td><%c++ $$<<*user.getPassword().get();%></td>
       </tr>
       <%c++}%>
     </table>
     <%c++ }else{%>
-    <H1>no parameter</H1>
+    <H1>no users</H1>
     <%c++}%>
 </body>
 </html>

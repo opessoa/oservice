@@ -36,6 +36,8 @@ class UserControlerBase : public RestfulController
              std::function<void(const HttpResponsePtr &)> &&callback);
     void create(const HttpRequestPtr &req,
                 std::function<void(const HttpResponsePtr &)> &&callback);
+    std::vector<drogon_model::sqlite3::User> view(const HttpRequestPtr &req,
+                std::function<void(const HttpResponsePtr &)> &&callback);
 
 
 //  void update(const HttpRequestPtr &req,

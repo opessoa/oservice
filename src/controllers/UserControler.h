@@ -27,6 +27,7 @@ class UserControler: public drogon::HttpController<UserControler>, public UserCo
     ADD_METHOD_TO(UserControler::deleteOne,"/user/{1}",Delete,Options,"api::v1::filters::jwtFilter");
     ADD_METHOD_TO(UserControler::get,"/user",Get,Options,"api::v1::filters::jwtFilter");
     ADD_METHOD_TO(UserControler::create,"/user",Post,Options,"api::v1::filters::jwtFilter");
+    ADD_METHOD_TO(UserControler::view,"/users",Get,Options,"api::v1::filters::jwtFilter");
     //ADD_METHOD_TO(UserControler::update,"/user",Put,Options);
     METHOD_LIST_END
      
@@ -40,8 +41,12 @@ class UserControler: public drogon::HttpController<UserControler>, public UserCo
                    std::function<void(const HttpResponsePtr &)> &&callback,
                    User::PrimaryKeyType &&id);
     void get(const HttpRequestPtr &req,
-             std::function<void(const HttpResponsePtr &)> &&callback);
+            std::function<void(const HttpResponsePtr &)> &&callback);
     void create(const HttpRequestPtr &req,
-             std::function<void(const HttpResponsePtr &)> &&callback);
+            std::function<void(const HttpResponsePtr &)> &&callback);
+
+    void view(const HttpRequestPtr &req,
+            std::function<void(const HttpResponsePtr &)> &&callback);
+                        
 
 };

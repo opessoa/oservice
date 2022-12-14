@@ -414,6 +414,15 @@ void UserControlerBase::create(const HttpRequestPtr &req,
     }   
 }
 
+
+std::vector<drogon_model::sqlite3::User> UserControlerBase::view(const HttpRequestPtr &req,
+        std::function<void(const HttpResponsePtr &)> &&callback)
+{
+    auto dbClientPtr = getDbClient();
+    drogon::orm::Mapper<User> mapper(dbClientPtr);
+    const auto& users = mapper.findAll();
+    return users;
+}
 /*
 void UserControlerBase::update(const HttpRequestPtr &req,
                                std::function<void(const HttpResponsePtr &)> &&callback)
@@ -439,3 +448,4 @@ UserControlerBase::UserControlerBase()
         "password"  // the alias for the password column.
     });
 }
+

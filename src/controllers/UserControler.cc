@@ -43,3 +43,14 @@ void UserControler::create(const HttpRequestPtr &req,
 {
     UserControlerBase::create(req, std::move(callback));
 }
+
+void UserControler::view(const HttpRequestPtr &req,
+                           std::function<void(const HttpResponsePtr &)> &&callback)
+{
+    const auto& users = UserControlerBase::view(req, std::move(callback));
+    HttpViewData data;
+    data.insert("title","ListParameters");
+    data.insert("users",users);
+    auto resp=HttpResponse::newHttpViewResponse("views/listUsers.csp",data);
+    callback(resp);
+}

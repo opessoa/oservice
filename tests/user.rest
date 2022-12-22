@@ -21,7 +21,7 @@ Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 ### Get User
-GET {{baseUrl}}/user/4
+GET {{baseUrl}}/user/1
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 

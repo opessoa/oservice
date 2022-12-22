@@ -9,6 +9,7 @@ int main() {
     // CORS Policy - Allow connections from anywhere
     app().registerPostHandlingAdvice([](const HttpRequestPtr &req, const HttpResponsePtr &resp) {
         resp->addHeader("Access-Control-Allow-Origin", "*");
+        resp->addHeader("Authorization",req->getHeader("Authorization"));
     });
 
     // Run HTTP framework,the method will block in the internal event loop

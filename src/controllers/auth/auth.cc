@@ -20,8 +20,8 @@ void auth::getToken(const HttpRequestPtr &request, std::function<void(const Http
 
         return callback(HttpResponse::newHttpJsonResponse(resultJson));
     }
-    auto jwtGenerated = JWT::generateToken({{"email",responseJson["email"].asString()}},
-        responseJson.isMember("remember") && responseJson["remember"].asBool()
+    auto jwtGenerated = JWT::generateToken({{"email",responseJson["email"].asString()}}/*,
+        responseJson.isMember("remember") && responseJson["remember"].asBool()*/
     );
     Json::Value::Int64 jwtExpiration = jwtGenerated.getExpiration();
 

@@ -56,3 +56,5 @@ target_sources(${PROJECT_NAME} PRIVATE ${SRC_DIR} ${CTL_SRC} ${FILTER_SRC} ${PLU
 
 # Dynamically loading views
 #set_property(TARGET ${PROJECT_NAME} PROPERTY ENABLE_EXPORTS ON)
+
+file(COPY src/public/. DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
